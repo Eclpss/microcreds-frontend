@@ -1,4 +1,4 @@
-import { ArrowLeft, Save } from 'lucide-react';
+import { ArrowLeft, Save, ShieldAlert } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AddEarnerPage() {
@@ -11,7 +11,7 @@ export default function AddEarnerPage() {
           <ArrowLeft className="h-4 w-4" /> Back to Directory
         </Link>
         <h1 className="text-2xl font-bold text-gray-900">Add New Earner</h1>
-        <p className="text-gray-500 text-sm mt-1">Register a new student to your institutions credential directory.</p>
+        <p className="text-gray-500 text-sm mt-1">Register a new recipient to your institutions credential directory.</p>
       </header>
 
       {/* Form Container */}
@@ -30,34 +30,53 @@ export default function AddEarnerPage() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Student Email Address</label>
-            <input type="email" id="email" className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="student@usg.ac.id" />
+            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+            <input type="email" id="email" className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="joko@example.com" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="nim" className="block text-sm font-semibold text-gray-700 mb-1">Student ID (NIM)</label>
+              <label htmlFor="nim" className="block text-sm font-semibold text-gray-700 mb-1">ID Number (NIM / NIP)</label>
               <input type="text" id="nim" className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="e.g. 220184759" />
             </div>
             <div>
-              <label htmlFor="department" className="block text-sm font-semibold text-gray-700 mb-1">Department</label>
+              <label htmlFor="department" className="block text-sm font-semibold text-gray-700 mb-1">Department / Organization</label>
               <select id="department" className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition bg-white">
                 <option>Computer Science</option>
                 <option>Information Systems</option>
                 <option>Engineering</option>
                 <option>Business Management</option>
+                <option>External Participant</option>
               </select>
             </div>
           </div>
 
-          <div className="pt-6 border-t border-gray-100 flex items-center justify-end gap-4">
-            <Link href="/dashboard/earners" className="px-5 py-2.5 text-gray-600 font-semibold hover:bg-gray-50 rounded-lg transition">
-              Cancel
-            </Link>
-            {/* Using a Link here just so it loops back for the prototype demo */}
-            <Link href="/dashboard/earners" className="px-5 py-2.5 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition shadow-sm flex items-center gap-2">
-              <Save className="h-4 w-4" /> Save Earner
-            </Link>
+          {/* NEW: Earner Role Dropdown */}
+          <div className="pt-4 border-t border-gray-100">
+            <label htmlFor="role" className="block text-sm font-semibold text-gray-700 mb-1">Earner Role (Categorization)</label>
+            <p className="text-xs text-gray-500 mb-3">Select the role to correctly tag their future credentials (e.g., Trainee vs. Trainer).</p>
+            <select id="role" className="w-full md:w-1/2 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition bg-white">
+              <option>Student / Trainee</option>
+              <option>Teacher / Trainer</option>
+              <option>Staff / Admin</option>
+              <option>Seminar Attendee</option>
+              <option>Competition Participant</option>
+            </select>
+          </div>
+
+          <div className="pt-6 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-xs text-amber-600 bg-amber-50 px-3 py-2 rounded-md border border-amber-200">
+              <ShieldAlert className="h-4 w-4 shrink-0" />
+              Users receive an invite email upon saving.
+            </div>
+            <div className="flex items-center gap-4">
+              <Link href="/dashboard/earners" className="px-5 py-2.5 text-gray-600 font-semibold hover:bg-gray-50 rounded-lg transition">
+                Cancel
+              </Link>
+              <Link href="/dashboard/earners" className="px-5 py-2.5 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition shadow-sm flex items-center gap-2">
+                <Save className="h-4 w-4" /> Save Earner
+              </Link>
+            </div>
           </div>
         </form>
       </div>
